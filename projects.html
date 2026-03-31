@@ -1,138 +1,215 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Project work by Isaiah Peebles with a focus on problems solved, implementation, impact, and tools used.">
-  <title>Projects | Isaiah Peebles</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <script defer src="js/main.js"></script>
-</head>
-<body data-page="projects">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Isaiah Peebles home">
-        <span class="brand-mark">IP</span>
-        <span class="brand-text">Isaiah Peebles</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project work by Isaiah Peebles focused on documentation, automation, and practical technical problem-solving."
+    />
+    <title>Projects | Isaiah Peebles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body data-page="projects">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <main id="main">
-    <section class="page-hero">
-      <div class="container narrow">
-        <p class="eyebrow">Projects</p>
-        <h1>Work examples that emphasize outcomes, not just features.</h1>
-        <p class="lead">
-          Each project below highlights the problem, the implementation approach, and the value created. Replace any placeholder details with your real project metrics and links.
-        </p>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Isaiah Peebles home">
+          <span class="brand-mark">IP</span>
+          <span class="brand-text">Isaiah Peebles</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="section">
-      <div class="container project-list">
-        <article class="project-card">
-          <div class="project-head">
-            <p class="card-tag">Featured Project</p>
-            <h2>Release Readiness Dashboard</h2>
-          </div>
-          <div class="project-grid">
-            <div>
-              <h3>Problem</h3>
-              <p>Engineering teams lacked a single view of release blockers, ownership, and deployment status, leading to scattered coordination and missed follow-up.</p>
-            </div>
-            <div>
-              <h3>What Isaiah built</h3>
-              <p>Designed and implemented a lightweight dashboard that consolidated release data, highlighted blockers, and made status visible to contributors and leads.</p>
-            </div>
-            <div>
-              <h3>Result / Impact</h3>
-              <p>Made release reviews faster, reduced manual status gathering, and gave stakeholders a clearer path to decision-making before deployment.</p>
-            </div>
-            <div>
-              <h3>Tools Used</h3>
-              <p>HTML, CSS, JavaScript, API integration, dashboard UI patterns</p>
-            </div>
-          </div>
-        </article>
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="eyebrow">Projects</p>
+          <h1>
+            Work focused on documentation, automation, and practical execution.
+          </h1>
+          <p class="lead">
+            These projects reflect how I approach technical work: understand the
+            problem, simplify the process, and build something useful that
+            improves clarity and delivery.
+          </p>
+        </div>
+      </section>
 
-        <article class="project-card">
-          <div class="project-head">
-            <p class="card-tag">Featured Project</p>
-            <h2>Operations Request Tracker</h2>
-          </div>
-          <div class="project-grid">
-            <div>
-              <h3>Problem</h3>
-              <p>Internal work requests were arriving through multiple channels without prioritization, making it hard to track scope, status, and ownership.</p>
+      <section class="section">
+        <div class="container project-list">
+          <article class="project-card">
+            <div class="project-head">
+              <p class="card-tag">Featured Project</p>
+              <h2>Excel Change Log PDF Tool</h2>
             </div>
-            <div>
-              <h3>What Isaiah built</h3>
-              <p>Created a structured intake interface and tracking flow that helped teams organize requests, surface next actions, and make work visible.</p>
+            <div class="project-grid">
+              <div>
+                <h3>Problem</h3>
+                <p>
+                  Reviewing changes across Excel-based documentation was
+                  time-consuming and difficult to communicate clearly,
+                  especially when revisions needed to be shared in a format
+                  others could quickly understand.
+                </p>
+              </div>
+              <div>
+                <h3>What I built</h3>
+                <p>
+                  Developed a Python-based workflow that compares Excel files,
+                  identifies changes across sheets, and generates a structured
+                  PDF change log for easier review and communication.
+                </p>
+              </div>
+              <div>
+                <h3>Result / Impact</h3>
+                <p>
+                  Reduced manual comparison effort, improved revision
+                  visibility, and made document changes easier for stakeholders
+                  to review and interpret.
+                </p>
+              </div>
+              <div>
+                <h3>Tools Used</h3>
+                <p>
+                  Python, openpyxl, PyMuPDF, Excel-based workflow automation
+                </p>
+              </div>
             </div>
-            <div>
-              <h3>Result / Impact</h3>
-              <p>Reduced ambiguity around incoming work, improved response consistency, and gave requesters a clearer understanding of current status.</p>
-            </div>
-            <div>
-              <h3>Tools Used</h3>
-              <p>JavaScript, form handling, UI states, process-oriented interface design</p>
-            </div>
-          </div>
-        </article>
+          </article>
 
-        <article class="project-card">
-          <div class="project-head">
-            <p class="card-tag">Featured Project</p>
-            <h2>Performance-Focused Personal Site</h2>
-          </div>
-          <div class="project-grid">
-            <div>
-              <h3>Problem</h3>
-              <p>Many personal sites bury hiring value behind overly broad messaging or complicated visuals that slow down review.</p>
+          <article class="project-card">
+            <div class="project-head">
+              <p class="card-tag">Featured Project</p>
+              <h2>AMD Zen5 Software Optimization Guide</h2>
+              <p class="project-link">
+                <a
+                  href="https://docs.amd.com/search/all?query=58455&content-lang=en-US"
+                  target="_blank"
+                  rel="noopener"
+                  >View Published Document</a
+                >
+              </p>
             </div>
-            <div>
-              <h3>What Isaiah built</h3>
-              <p>Developed a concise, responsive site that puts identity, projects, resume access, and contact options in front of recruiters and technical teams quickly.</p>
+            <div class="project-grid">
+              <div>
+                <h3>Problem</h3>
+                <p>
+                  Highly technical processor guidance needs to be communicated
+                  clearly and accurately for developers working on
+                  performance-sensitive software.
+                </p>
+              </div>
+              <div>
+                <h3>What I worked on</h3>
+                <p>
+                  Contributed to a published AMD technical guide covering
+                  software optimization guidance for the AMD Zen5
+                  microarchitecture, helping shape content intended for
+                  compiler, assembler, and low-level software audiences.
+                </p>
+              </div>
+              <div>
+                <h3>Result / Impact</h3>
+                <p>
+                  Supported the release of public-facing technical documentation
+                  that helps developers better understand architecture behavior,
+                  optimization considerations, and performance-related
+                  recommendations.
+                </p>
+              </div>
+              <div>
+                <h3>Tools Used</h3>
+                <p>
+                  Technical documentation, structured writing, revision
+                  management, cross-functional collaboration
+                </p>
+              </div>
             </div>
-            <div>
-              <h3>Result / Impact</h3>
-              <p>Creates a stronger first impression, shortens time-to-understanding for visitors, and makes professional review easier.</p>
+          </article>
+
+          <article class="project-card">
+            <div class="project-head">
+              <p class="card-tag">Featured Project</p>
+              <h2>Documentation Workflow Optimization</h2>
             </div>
-            <div>
-              <h3>Tools Used</h3>
-              <p>Semantic HTML, reusable CSS architecture, vanilla JavaScript</p>
+            <div class="project-grid">
+              <div>
+                <h3>Problem</h3>
+                <p>
+                  Documentation updates required manual coordination and review
+                  across multiple files, leading to slow turnaround times and
+                  inconsistent outputs.
+                </p>
+              </div>
+              <div>
+                <h3>What I did</h3>
+                <p>
+                  Analyzed the documentation workflow, identified bottlenecks,
+                  and implemented automation-driven improvements to streamline
+                  updates and standardize output.
+                </p>
+              </div>
+              <div>
+                <h3>Result / Impact</h3>
+                <p>
+                  Reduced turnaround time from approximately one week to one day
+                  while improving consistency and reliability across
+                  documentation deliverables.
+                </p>
+              </div>
+              <div>
+                <h3>Tools Used</h3>
+                <p>
+                  Python, Excel workflows, process optimization, documentation
+                  systems
+                </p>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Isaiah Peebles</p>
+        <div class="footer-links">
+          <a href="Resume(2026).pdf" target="_blank" rel="noopener">Resume</a>
+          <a
+            href="https://github.com/IsaiahPeebles"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a href="contact.html">Contact</a>
+        </div>
       </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>Isaiah Peebles</p>
-      <div class="footer-links">
-        <a href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
-        <a href="https://github.com/your-github-username" target="_blank" rel="noopener">GitHub</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </footer>
-</body>
+    </footer>
+  </body>
 </html>

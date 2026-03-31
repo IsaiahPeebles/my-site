@@ -1,15 +1,15 @@
 :root {
-  --bg: #f4f1ea;
-  --surface: #fffdfa;
-  --surface-strong: #ffffff;
-  --surface-muted: #ece6da;
-  --text: #1c1b18;
-  --text-soft: #575247;
-  --line: #d6cfbf;
-  --accent: #1f5f52;
-  --accent-strong: #16453b;
-  --accent-soft: #e0efe9;
-  --shadow: 0 18px 48px rgba(28, 27, 24, 0.08);
+  --bg: #d9dde2;
+  --surface: #eef1f4;
+  --surface-strong: #f8fafc;
+  --surface-muted: #c9d0d8;
+  --text: #111315;
+  --text-soft: #434a53;
+  --line: #a9b1ba;
+  --accent: #2e5d67;
+  --accent-strong: #1f434a;
+  --accent-soft: #dce8eb;
+  --shadow: 0 18px 48px rgba(17, 19, 21, 0.09);
   --radius-lg: 24px;
   --radius-md: 16px;
   --radius-sm: 10px;
@@ -30,8 +30,8 @@ body {
   margin: 0;
   font-family: "Manrope", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(31, 95, 82, 0.08), transparent 28%),
-    linear-gradient(180deg, #f7f3eb 0%, #f4f1ea 100%);
+    radial-gradient(circle at top left, rgba(46, 93, 103, 0.1), transparent 28%),
+    linear-gradient(180deg, #e7ebf0 0%, #d9dde2 100%);
   color: var(--text);
   line-height: 1.6;
 }
@@ -81,8 +81,8 @@ textarea {
   top: 0;
   z-index: 20;
   backdrop-filter: blur(14px);
-  background: rgba(244, 241, 234, 0.88);
-  border-bottom: 1px solid rgba(214, 207, 191, 0.75);
+  background: rgba(226, 231, 237, 0.88);
+  border-bottom: 1px solid rgba(169, 177, 186, 0.75);
 }
 
 .header-inner {
@@ -113,7 +113,7 @@ textarea {
 }
 
 .brand-text {
-  font-size: 1rem;
+  font-size: 1.75rem;
 }
 
 .site-nav {
@@ -278,8 +278,8 @@ textarea {
 .project-card,
 .contact-card,
 .callout {
-  background: rgba(255, 253, 250, 0.9);
-  border: 1px solid rgba(214, 207, 191, 0.9);
+  background: rgba(248, 250, 252, 0.88);
+  border: 1px solid rgba(169, 177, 186, 0.9);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
 }
@@ -329,9 +329,9 @@ textarea {
 }
 
 .section-muted {
-  background: rgba(236, 230, 218, 0.42);
-  border-top: 1px solid rgba(214, 207, 191, 0.7);
-  border-bottom: 1px solid rgba(214, 207, 191, 0.7);
+  background: rgba(201, 208, 216, 0.32);
+  border-top: 1px solid rgba(169, 177, 186, 0.7);
+  border-bottom: 1px solid rgba(169, 177, 186, 0.7);
 }
 
 .section-heading {
@@ -445,8 +445,8 @@ textarea {
 .project-grid div {
   padding: 1.1rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(214, 207, 191, 0.8);
+  background: rgba(248, 250, 252, 0.78);
+  border: 1px solid rgba(169, 177, 186, 0.8);
 }
 
 .contact-list li + li {
@@ -480,7 +480,7 @@ textarea {
 }
 
 .site-footer {
-  border-top: 1px solid rgba(214, 207, 191, 0.85);
+  border-top: 1px solid rgba(169, 177, 186, 0.85);
   padding: 1.25rem 0 2rem;
 }
 
@@ -533,7 +533,7 @@ textarea {
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
-    background: rgba(255, 253, 250, 0.98);
+    background: rgba(238, 241, 244, 0.98);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow);
