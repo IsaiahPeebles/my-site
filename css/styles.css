@@ -595,6 +595,9 @@ button {
 
 /* The header stays put while the page content changes underneath it */
 .site-header {
+  /* Keeps the mobile menu above the hero, which has its own layer */
+  position: relative;
+  z-index: 10;
   view-transition-name: site-header;
 }
 

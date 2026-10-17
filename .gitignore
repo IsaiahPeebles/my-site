@@ -1,1 +1,5 @@
+# macOS Finder metadata
+.DS_Store
+
+# Local Playwright files
 .playwright-mcp/
