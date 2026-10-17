@@ -1,161 +1,312 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <script>
+      document.documentElement.classList.add("js");
+      if (document.prerendering) {
+        document.documentElement.classList.add("prerendering");
+        document.addEventListener(
+          "prerenderingchange",
+          () => document.documentElement.classList.remove("prerendering"),
+          { once: true }
+        );
+      }
+    </script>
     <meta
       name="description"
-      content="Isaiah Peebles is a technical writer focused on clear documentation, internal tooling, workflow improvement, and practical technical problem-solving."
+      content="Isaiah Peebles is a technical writer who makes complex technical work easy to understand and builds automation that cuts documentation turnaround time."
     />
     <title>Isaiah Peebles | Technical Writer</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Ctext x='16' y='20' font-family='Georgia,serif' font-size='14' font-weight='700' fill='%23fff' text-anchor='middle'%3EIP%3C/text%3E%3Cpath d='M9 24h14' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&family=Schibsted+Grotesk:wght@400..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script defer src="js/main.js"></script>
+    <link rel="stylesheet" href="css/styles.css?v=5" />
+    <script defer src="js/main.js?v=5"></script>
+    <link rel="expect" href="#main" blocking="render" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/*.pdf" } }
+              ]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
   </head>
-  <body data-page="home">
-  
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" aria-label="Isaiah Peebles home">
-          <span class="brand-mark">IP</span>
-          <span class="brand-text">Isaiah Peebles</span>
-        </a>
+        <a class="brand" href="index.html">Isaiah Peebles</a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a class="nav-resume" href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        </nav>
         <button
           class="nav-toggle"
           type="button"
           aria-expanded="false"
           aria-controls="site-nav"
-          aria-label="Open navigation"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          Menu
         </button>
-        <nav class="site-nav" id="site-nav" aria-label="Primary">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact</a>
-        </nav>
       </div>
     </header>
 
     <main id="main">
       <section class="hero">
-        <div class="container hero-grid">
+        <svg class="hero-grid" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M60 0V900M1540 0V900M150 0V900M1450 0V900M230 0V900M1370 0V900M300 0V900M1300 0V900M360 0V900M1240 0V900M410 0V900M1190 0V900M0 450H1600M800 450L0 -300M800 450L1600 -300M800 450L0 0M800 450L1600 0M800 450L0 150M800 450L1600 150M800 450L0 300M800 450L1600 300M800 450L0 600M800 450L1600 600M800 450L0 750M800 450L1600 750M800 450L0 900M800 450L1600 900M800 450L0 1200M800 450L1600 1200M800 450L200 0M800 450L200 900M800 450L500 0M800 450L500 900M800 450L1100 0M800 450L1100 900M800 450L1400 0M800 450L1400 900" />
+        </svg>
+        <div class="container hero-layout">
           <div class="hero-copy">
-            <p class="eyebrow">Technical Writer · Process & Execution</p>
-            <h1>
-              Making technical work clearer, faster, and easier to execute.
-            </h1>
-            <p class="hero-text">
-              I improve documentation and automate workflows to reduce turnaround time and make complex information easier to use.
+          <p class="hero-role">Technical writer</p>
+
+          <h1 class="hero-title">I make technical work clear, then automate the busywork.</h1>
+
+          <div class="hero-body">
+            <p class="lead">
+              I write technical documentation and build Python tools. My public
+              work includes AMD's Zen5 Software Optimization Guide.
             </p>
-            <div class="hero-actions">
-              <a
-                class="button button-primary"
-                href="Resume(2026).pdf"
-                target="_blank"
-                rel="noopener"
-                >Resume</a
-              >
-            
+            <div class="actions">
+              <a class="button button-primary" href="assets/resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a>
+              <a class="button button-secondary" href="projects.html">See my work</a>
             </div>
           </div>
+          </div>
 
-          <aside class="hero-panel" aria-label="Professional summary">
-            <div class="panel-card">
-              <p class="panel-label">What I bring</p>
-              <ul class="stat-list">
-                <li>
-                  <strong>Clarity</strong>
-                  <span
-                    >Structured thinking and documentation that make technical
-                    work easier to follow</span
-                  >
-                </li>
-                <li>
-                  <strong>Execution</strong>
-                  <span
-                    >Practical solutions focused on maintainability, usability,
-                    and real business value</span
-                  >
-                </li>
-                <li>
-                  <strong>Range</strong>
-                  <span
-                    >Experience in documentation, workflows, automation, and cross-functional execution</span
-                  >
-                </li>
-              </ul>
-            </div>
-          </aside>
+          <figure class="hero-art" aria-hidden="true">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <circle class="art-backdrop" cx="200" cy="215" r="170" />
+              <rect class="art-doc" x="105" y="55" width="190" height="260" rx="10" />
+              <rect class="art-heading" x="128" y="82" width="96" height="10" rx="3" />
+              <g class="art-wordy">
+                <rect class="art-line art-line--wordy" style="--i: 0" x="128" y="112" width="144" height="6" rx="3" />
+                <rect class="art-line art-line--wordy" style="--i: 1" x="128" y="132" width="136" height="6" rx="3" />
+                <rect class="art-line art-line--wordy" style="--i: 2" x="128" y="152" width="148" height="6" rx="3" />
+                <rect class="art-line art-line--wordy" style="--i: 3" x="128" y="172" width="120" height="6" rx="3" />
+                <rect class="art-line art-line--wordy" style="--i: 4" x="128" y="192" width="140" height="6" rx="3" />
+                <rect class="art-line art-line--wordy" style="--i: 5" x="128" y="212" width="96" height="6" rx="3" />
+              </g>
+              <g class="art-strikes">
+                <rect class="art-strike" style="--i: 0" x="122" y="114" width="156" height="2" />
+                <rect class="art-strike" style="--i: 1" x="122" y="134" width="148" height="2" />
+                <rect class="art-strike" style="--i: 2" x="122" y="154" width="160" height="2" />
+                <rect class="art-strike" style="--i: 3" x="122" y="174" width="132" height="2" />
+                <rect class="art-strike" style="--i: 4" x="122" y="194" width="152" height="2" />
+                <rect class="art-strike" style="--i: 5" x="122" y="214" width="108" height="2" />
+              </g>
+              <g class="art-clean">
+                <rect class="art-line art-line--clean" style="--i: 0" x="128" y="112" width="112" height="6" rx="3" />
+                <rect class="art-line art-line--clean" style="--i: 1" x="128" y="132" width="84" height="6" rx="3" />
+                <rect class="art-line art-line--clean" style="--i: 2" x="128" y="152" width="100" height="6" rx="3" />
+              </g>
+              <path class="art-check" pathLength="1" d="M140 256 l12 12 l24 -26" />
+              <g class="art-gear art-gear--big">
+                <circle class="gear-teeth" cx="300" cy="78" r="30" pathLength="24" />
+                <circle class="gear-hub" cx="300" cy="78" r="19" />
+                <circle class="gear-hub" cx="300" cy="78" r="6" />
+              </g>
+              <g class="art-gear art-gear--small">
+                <circle class="gear-teeth" cx="342" cy="128" r="17" pathLength="16" />
+                <circle class="gear-hub" cx="342" cy="128" r="10" />
+                <circle class="gear-hub" cx="342" cy="128" r="3.5" />
+              </g>
+              <g class="art-arm" transform="translate(76 72) scale(0.82)">
+                <rect class="arm-shape" x="296" y="350" width="88" height="24" rx="5" />
+                <line class="arm-detail" x1="356" y1="362" x2="372" y2="362" />
+                <g class="arm-upper">
+                  <line class="arm-segment" x1="340" y1="350" x2="356" y2="240" />
+                  <line class="arm-joints" x1="340" y1="350" x2="356" y2="240" />
+                  <g class="arm-fore">
+                    <line class="arm-segment" x1="356" y1="240" x2="252" y2="222" />
+                    <line class="arm-joints" x1="356" y1="240" x2="252" y2="222" />
+                    <g transform="translate(252 222) rotate(9.8)">
+                      <path class="arm-tool" d="M-8 -15 V15 M-8 -15 L-26 -22 L-42 -9 M-8 15 L-26 22 L-42 9" />
+                      <rect class="arm-joint" x="-6" y="-10" width="16" height="20" rx="2" />
+                    </g>
+                    <circle class="arm-joint" cx="356" cy="240" r="12" />
+                    <circle class="arm-pin" cx="356" cy="240" r="4" />
+                  </g>
+                </g>
+                <circle class="arm-joint" cx="340" cy="350" r="13" />
+                <circle class="arm-pin" cx="340" cy="350" r="4.5" />
+              </g>
+            </svg>
+          </figure>
+        </div>
+        <a class="scroll-cue" href="#before-after">Scroll<span class="scroll-cue-line" aria-hidden="true"></span></a>
+      </section>
+
+      <div class="pane-content">
+
+      <section class="section" id="before-after" aria-labelledby="changes-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="changes-title">Before and after</h2>
+          <div class="doc-body doc-body--wide">
+            <p class="section-intro">
+              What changed in the documentation workflows I worked on.
+            </p>
+            <table class="changelog">
+              <thead>
+                <tr>
+                  <th scope="col">Area</th>
+                  <th scope="col">Before</th>
+                  <th scope="col">After</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Documentation turnaround</th>
+                  <td data-label="Before"><del>About a week</del></td>
+                  <td data-label="After"><ins>About a day</ins></td>
+                </tr>
+                <tr>
+                  <th scope="row">Reviewing Excel revisions</th>
+                  <td data-label="Before"><del>Manual, sheet-by-sheet comparison</del></td>
+                  <td data-label="After"><ins>Automatic PDF change log built in Python</ins></td>
+                </tr>
+                <tr>
+                  <th scope="row">Document updates</th>
+                  <td data-label="Before"><del>Inconsistent from file to file</del></td>
+                  <td data-label="After"><ins>Standardized, repeatable output</ins></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-  <div class="container section-heading">
-    <div>
-      <p class="eyebrow">Selected Work</p>
-      <h2>Projects that show clear thinking and practical problem-solving</h2>
-    </div>
-    <a class="text-link" href="projects.html">See all projects</a>
-  </div>
+      <section class="section" aria-labelledby="tool-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="tool-title">The tool, running</h2>
+          <div class="doc-body doc-body--wide">
+            <p class="section-intro">My Excel change log tool, from command to finished report. Example data.</p>
+            <div class="demo" data-demo>
+              <div class="demo-pane demo-code">
+                <pre><code><span class="line" data-type>$ python changelog.py spec_v1.xlsx spec_v2.xlsx</span>
+<span class="line">Comparing 14 sheets...</span>
+<span class="line">37 changes found</span>
+<span class="line">Saved changelog.pdf</span></code></pre>
+              </div>
+              <div class="demo-pane demo-doc">
+                <p class="doc-title">Change log: spec_v2.xlsx</p>
+                <p class="doc-meta">37 changes across 6 sheets</p>
+                <ul class="doc-list">
+                  <li><b>Timing</b>, row 14: latency <del>4</del> <ins>5</ins> cycles</li>
+                  <li><b>Parameters</b>, row 32: default <del>Off</del> <ins>On</ins></li>
+                  <li><b>Notes</b>, row 7: description rewritten</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <div class="container card-grid">
-    <article class="card">
-      <p class="card-tag">Automation · Documentation Systems</p>
-      <h3>Automated Documentation Change Log System</h3>
-      <p>Built a Python-based workflow to compare Excel files and generate structured PDF change logs.</p>
-      <ul class="meta-list">
-        <li>Reduced manual comparison work</li>
-        <li>Improved revision visibility</li>
-      </ul>
-    </article>
+      <section class="section" aria-labelledby="md-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="md-title">Docs as code</h2>
+          <div class="doc-body doc-body--wide">
+            <p class="section-intro">Plain-text source on the left, the page readers get on the right.</p>
+            <div class="demo" data-demo>
+              <div class="demo-pane demo-code">
+                <pre><code><span class="line" data-type>## Install the tool</span>
+<span class="line"> </span>
+<span class="line">Run the setup script once:</span>
+<span class="line"> </span>
+<span class="line">`python setup.py`</span>
+<span class="line"> </span>
+<span class="line">- Works with Excel 2016 and later</span>
+<span class="line">- Saves each report as a PDF</span></code></pre>
+              </div>
+              <div class="demo-pane demo-doc">
+                <p class="doc-title">Install the tool</p>
+                <p>Run the setup script once:</p>
+                <p><code>python setup.py</code></p>
+                <ul class="doc-bullets">
+                  <li>Works with Excel 2016 and later</li>
+                  <li>Saves each report as a PDF</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <article class="card">
-      <p class="card-tag">Technical Documentation · Published Work</p>
-      <h3>AMD Zen5 Software Optimization Guide</h3>
-      <p>Contributed to a public AMD technical guide focused on software optimization for the Zen5 microarchitecture.</p>
-      <ul class="meta-list">
-        <li>Supported clear communication of complex technical content</li>
-        <li>Contributed to documentation intended for performance-focused developers</li>
-      </ul>
-    </article>
+      <section class="section" aria-labelledby="work-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="work-title">Selected work</h2>
+          <div class="doc-body">
+            <ul class="work-list">
+              <li>
+                <h3><a href="projects.html#changelog-tool">Excel change log PDF tool</a></h3>
+                <p>A Python workflow that compares Excel files and generates a structured PDF of every change, so reviewers see what moved without hunting for it.</p>
+                <p class="work-meta">Python, openpyxl, PyMuPDF</p>
+              </li>
+              <li>
+                <h3><a href="projects.html#amd-zen5">AMD Zen5 Software Optimization Guide</a></h3>
+                <p>Contributed to AMD's public guide for developers tuning software for the Zen5 microarchitecture.</p>
+                <p class="work-meta">Published technical documentation</p>
+              </li>
+              <li>
+                <h3><a href="projects.html#workflow-optimization">Documentation workflow optimization</a></h3>
+                <p>Found the bottlenecks in a multi-file update process and automated them. Turnaround dropped from about a week to about a day.</p>
+                <p class="work-meta">Process improvement, Python, Excel</p>
+              </li>
+            </ul>
+            <p class="more-link"><a href="projects.html">Read the full project write-ups</a></p>
+          </div>
+        </div>
+      </section>
 
-    <article class="card">
-  <p class="card-tag">Process Improvement · Execution</p>
-  <h3>Documentation Workflow Optimization</h3>
-  <p>Improved internal documentation workflows by identifying inefficiencies and implementing automation-driven solutions.</p>
-  <ul class="meta-list">
-    <li>Reduced turnaround time from ~1 week to ~1 day</li>
-    <li>Improved consistency and repeatability across document updates</li>
-  </ul>
-</article>
-  </div>
-</section>
-
-      
+      <section class="section" aria-labelledby="contact-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="contact-title">Get in touch</h2>
+          <div class="doc-body">
+            <p class="closing-line">
+              Open to conversations of any kind. Email me at
+              <a href="mailto:isaiahpeebles001@gmail.com">isaiahpeebles001@gmail.com</a>.
+            </p>
+            <div class="actions">
+              <a class="button button-primary" href="assets/resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a>
+              <a class="button button-secondary" href="https://www.linkedin.com/in/isaiahpeebles/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Isaiah Peebles</p>
-        <div class="footer-links">
-          <a href="Resume(2026).pdf" target="_blank" rel="noopener">Resume</a>
-          <a
-            href="https://github.com/IsaiahPeebles"
-            target="_blank"
-            rel="noopener"
-            >GitHub</a
-          >
-          <a href="contact.html">Contact</a>
-        </div>
+        <p>Isaiah Peebles, technical writer</p>
+        <ul class="footer-links">
+          <li><a href="mailto:isaiahpeebles001@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/isaiahpeebles/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/IsaiahPeebles" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+        </ul>
+        <p class="colophon" data-colophon></p>
       </div>
     </footer>
   </body>

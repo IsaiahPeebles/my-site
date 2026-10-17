@@ -1,214 +1,192 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <script>
+      document.documentElement.classList.add("js");
+      if (document.prerendering) {
+        document.documentElement.classList.add("prerendering");
+        document.addEventListener(
+          "prerenderingchange",
+          () => document.documentElement.classList.remove("prerendering"),
+          { once: true }
+        );
+      }
+    </script>
     <meta
       name="description"
-      content="Project work by Isaiah Peebles focused on documentation, automation, and practical technical problem-solving."
+      content="Project work by Isaiah Peebles: documentation, automation, and practical technical problem-solving."
     />
     <title>Projects | Isaiah Peebles</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Ctext x='16' y='20' font-family='Georgia,serif' font-size='14' font-weight='700' fill='%23fff' text-anchor='middle'%3EIP%3C/text%3E%3Cpath d='M9 24h14' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&family=Schibsted+Grotesk:wght@400..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script defer src="js/main.js"></script>
+    <link rel="stylesheet" href="css/styles.css?v=5" />
+    <script defer src="js/main.js?v=5"></script>
+    <link rel="expect" href="#main" blocking="render" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/*.pdf" } }
+              ]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
   </head>
-  <body data-page="projects">
+  <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" aria-label="Isaiah Peebles home">
-          <span class="brand-mark">IP</span>
-          <span class="brand-text">Isaiah Peebles</span>
-        </a>
+        <a class="brand" href="index.html">Isaiah Peebles</a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="about.html">About</a>
+          <a href="projects.html" aria-current="page">Projects<span class="nav-marker" aria-hidden="true"></span></a>
+          <a href="contact.html">Contact</a>
+          <a class="nav-resume" href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        </nav>
         <button
           class="nav-toggle"
           type="button"
           aria-expanded="false"
           aria-controls="site-nav"
-          aria-label="Open navigation"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          Menu
         </button>
-        <nav class="site-nav" id="site-nav" aria-label="Primary">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact</a>
-        </nav>
       </div>
     </header>
 
     <main id="main">
-      <section class="page-hero">
-        <div class="container narrow">
-          <p class="eyebrow">Projects</p>
-          <h1>
-            Work focused on documentation, automation, and practical execution.
-          </h1>
-          <p class="lead">
-            These projects reflect how I approach technical work: understand the
-            problem, simplify the process, and build something useful that
-            improves clarity and delivery.
-          </p>
+      <section class="page-intro">
+        <div class="container doc-row">
+          <div class="doc-body doc-body--offset">
+            <h1>Projects</h1>
+            <p class="lead">
+              How I approach technical work: understand the problem, simplify
+              the process, and build something people actually use.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container project-list">
-          <article class="project-card">
-            <div class="project-head">
-              <p class="card-tag">Featured Project</p>
-              <h2>Excel Change Log PDF Tool</h2>
-            </div>
-            <div class="project-grid">
-              <div>
-                <h3>Problem</h3>
-                <p>
-                  Reviewing changes across Excel-based documentation was
-                  time-consuming and difficult to communicate clearly,
-                  especially when revisions needed to be shared in a format
-                  others could quickly understand.
-                </p>
-              </div>
-              <div>
-                <h3>What I built</h3>
-                <p>
-                  Developed a Python-based workflow that compares Excel files,
-                  identifies changes across sheets, and generates a structured
-                  PDF change log for easier review and communication.
-                </p>
-              </div>
-              <div>
-                <h3>Result / Impact</h3>
-                <p>
-                  Reduced manual comparison effort, improved revision
-                  visibility, and made document changes easier for stakeholders
-                  to review and interpret.
-                </p>
-              </div>
-              <div>
-                <h3>Tools Used</h3>
-                <p>
-                  Python, openpyxl, PyMuPDF, Excel-based workflow automation
-                </p>
-              </div>
-            </div>
-          </article>
+      <div class="pane-content">
 
-          <article class="project-card">
-            <div class="project-head">
-              <p class="card-tag">Featured Project</p>
-              <h2>AMD Zen5 Software Optimization Guide</h2>
-              <p class="project-link">
-                <a
-                  href="https://docs.amd.com/search/all?query=58455&content-lang=en-US"
-                  target="_blank"
-                  rel="noopener"
-                  >View Published Document</a
-                >
-              </p>
-            </div>
-            <div class="project-grid">
+      <article class="section project" id="changelog-tool" aria-labelledby="p1-title">
+        <div class="container doc-row">
+          <aside class="side-notes" aria-label="Project details">
+            <dl>
+              <dt>Tools</dt>
+              <dd>Python, openpyxl, PyMuPDF, Excel</dd>
+            </dl>
+          </aside>
+          <div class="doc-body">
+            <h2 id="p1-title">Excel change log PDF tool</h2>
+            <dl class="project-facts">
               <div>
-                <h3>Problem</h3>
-                <p>
-                  Highly technical processor guidance needs to be communicated
-                  clearly and accurately for developers working on
-                  performance-sensitive software.
-                </p>
+                <dt>Problem</dt>
+                <dd>Reviewing changes across Excel-based documentation was slow, and the results were hard to share in a form others could read quickly.</dd>
               </div>
               <div>
-                <h3>What I worked on</h3>
-                <p>
-                  Contributed to a published AMD technical guide covering
-                  software optimization guidance for the AMD Zen5
-                  microarchitecture, helping shape content intended for
-                  compiler, assembler, and low-level software audiences.
-                </p>
+                <dt>What I built</dt>
+                <dd>A Python workflow that compares Excel files, finds changes across every sheet, and generates a structured PDF change log for review.</dd>
               </div>
               <div>
-                <h3>Result / Impact</h3>
-                <p>
-                  Supported the release of public-facing technical documentation
-                  that helps developers better understand architecture behavior,
-                  optimization considerations, and performance-related
-                  recommendations.
-                </p>
+                <dt>Result</dt>
+                <dd>Less manual comparison, clearer revision history, and changes stakeholders can review and understand at a glance.</dd>
               </div>
-              <div>
-                <h3>Tools Used</h3>
-                <p>
-                  Technical documentation, structured writing, revision
-                  management, cross-functional collaboration
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-head">
-              <p class="card-tag">Featured Project</p>
-              <h2>Documentation Workflow Optimization</h2>
-            </div>
-            <div class="project-grid">
-              <div>
-                <h3>Problem</h3>
-                <p>
-                  Documentation updates required manual coordination and review
-                  across multiple files, leading to slow turnaround times and
-                  inconsistent outputs.
-                </p>
-              </div>
-              <div>
-                <h3>What I did</h3>
-                <p>
-                  Analyzed the documentation workflow, identified bottlenecks,
-                  and implemented automation-driven improvements to streamline
-                  updates and standardize output.
-                </p>
-              </div>
-              <div>
-                <h3>Result / Impact</h3>
-                <p>
-                  Reduced turnaround time from approximately one week to one day
-                  while improving consistency and reliability across
-                  documentation deliverables.
-                </p>
-              </div>
-              <div>
-                <h3>Tools Used</h3>
-                <p>
-                  Python, Excel workflows, process optimization, documentation
-                  systems
-                </p>
-              </div>
-            </div>
-          </article>
+            </dl>
+          </div>
         </div>
-      </section>
+      </article>
+
+      <article class="section project" id="amd-zen5" aria-labelledby="p2-title">
+        <div class="container doc-row">
+          <aside class="side-notes" aria-label="Project details">
+            <dl>
+              <dt>Skills</dt>
+              <dd>Technical documentation, structured writing, revision management, cross-functional collaboration</dd>
+              <dt>Published</dt>
+              <dd><a href="https://docs.amd.com/search/all?query=58455&amp;content-lang=en-US" target="_blank" rel="noopener">View the guide on docs.amd.com</a></dd>
+            </dl>
+          </aside>
+          <div class="doc-body">
+            <h2 id="p2-title">AMD Zen5 Software Optimization Guide</h2>
+            <dl class="project-facts">
+              <div>
+                <dt>Problem</dt>
+                <dd>Processor optimization guidance has to be clear and exact for developers writing performance-sensitive software.</dd>
+              </div>
+              <div>
+                <dt>What I worked on</dt>
+                <dd>Contributed to AMD's published guide on software optimization for the Zen5 microarchitecture, written for compiler, assembler, and low-level software developers.</dd>
+              </div>
+              <div>
+                <dt>Result</dt>
+                <dd>Helped release public documentation that explains architecture behavior, optimization trade-offs, and performance recommendations.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="section project" id="workflow-optimization" aria-labelledby="p3-title">
+        <div class="container doc-row">
+          <aside class="side-notes" aria-label="Project details">
+            <dl>
+              <dt>Tools</dt>
+              <dd>Python, Excel workflows, documentation systems</dd>
+              <dt>Turnaround</dt>
+              <dd><del>About a week</del> <ins>About a day</ins></dd>
+            </dl>
+          </aside>
+          <div class="doc-body">
+            <h2 id="p3-title">Documentation workflow optimization</h2>
+            <dl class="project-facts">
+              <div>
+                <dt>Problem</dt>
+                <dd>Documentation updates needed manual coordination and review across many files, which made turnaround slow and output inconsistent.</dd>
+              </div>
+              <div>
+                <dt>What I did</dt>
+                <dd>Mapped the workflow, found the bottlenecks, and automated the repetitive steps to streamline updates and standardize output.</dd>
+              </div>
+              <div>
+                <dt>Result</dt>
+                <dd>Turnaround dropped from about a week to about a day, with more consistent, reliable deliverables.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+      </div>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Isaiah Peebles</p>
-        <div class="footer-links">
-          <a href="Resume(2026).pdf" target="_blank" rel="noopener">Resume</a>
-          <a
-            href="https://github.com/IsaiahPeebles"
-            target="_blank"
-            rel="noopener"
-            >GitHub</a
-          >
-          <a href="contact.html">Contact</a>
-        </div>
+        <p>Isaiah Peebles, technical writer</p>
+        <ul class="footer-links">
+          <li><a href="mailto:isaiahpeebles001@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/isaiahpeebles/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/IsaiahPeebles" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+        </ul>
+        <p class="colophon" data-colophon></p>
       </div>
     </footer>
   </body>

@@ -1,108 +1,162 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <script>
+      document.documentElement.classList.add("js");
+      if (document.prerendering) {
+        document.documentElement.classList.add("prerendering");
+        document.addEventListener(
+          "prerenderingchange",
+          () => document.documentElement.classList.remove("prerendering"),
+          { once: true }
+        );
+      }
+    </script>
     <meta
       name="description"
-      content="Isaiah Peebles — Technical writer focused on documentation, workflow improvement, and automation."
+      content="About Isaiah Peebles: technical writer focused on documentation, workflow improvement, and automation."
     />
     <title>About | Isaiah Peebles</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Ctext x='16' y='20' font-family='Georgia,serif' font-size='14' font-weight='700' fill='%23fff' text-anchor='middle'%3EIP%3C/text%3E%3Cpath d='M9 24h14' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&family=Schibsted+Grotesk:wght@400..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script defer src="js/main.js"></script>
+    <link rel="stylesheet" href="css/styles.css?v=5" />
+    <script defer src="js/main.js?v=5"></script>
+    <link rel="expect" href="#main" blocking="render" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/*.pdf" } }
+              ]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
   </head>
-  <body data-page="about">
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html">
-          <span class="brand-mark">IP</span>
-          <span class="brand-text">Isaiah Peebles</span>
-        </a>
-        <button class="nav-toggle" type="button">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="site-nav">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
+        <a class="brand" href="index.html">Isaiah Peebles</a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="about.html" aria-current="page">About<span class="nav-marker" aria-hidden="true"></span></a>
           <a href="projects.html">Projects</a>
           <a href="contact.html">Contact</a>
+          <a class="nav-resume" href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
         </nav>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          Menu
+        </button>
       </div>
     </header>
 
     <main id="main">
-      <section class="page-hero">
-        <div class="container narrow">
-          <p class="eyebrow">About</p>
-          <h1>
-            Technical writer improving documentation workflows and reducing
-            manual work through automation.
-          </h1>
-          <p class="lead">
-            I write technical documentation, improve workflows, and build tools
-            that make documentation faster to produce and easier to maintain.
-          </p>
+      <section class="page-intro">
+        <div class="container doc-row">
+          <div class="doc-body doc-body--offset">
+            <h1>About</h1>
+            <p class="lead">
+              I'm a technical writer who improves documentation workflows and
+              cuts manual work through automation. I care about one thing above all: the reader gets it the first time.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container two-column">
-          <article class="content-block">
-            <h2>What I Do</h2>
-            <ul class="detail-list">
-              <li>Create clear, structured technical documentation</li>
+      <div class="pane-content">
+
+      <section class="section" aria-labelledby="do-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="do-title">What I do</h2>
+          <div class="doc-body">
+            <ul class="plain-list">
+              <li>Write clear, structured technical documentation</li>
               <li>Improve documentation workflows and processes</li>
-              <li>Build internal tools to reduce manual work</li>
+              <li>Build internal tools that remove manual, repetitive work</li>
             </ul>
-          </article>
-
-          <article class="content-block">
-            <h2>Impact</h2>
-            <ul class="detail-list">
-              <li>Reduced documentation turnaround from ~1 week to 1 day</li>
-              <li>
-                Built Python tools for document comparison and change tracking
-              </li>
-              <li>
-                Supported publish-ready documentation used by customers and
-                teams
-              </li>
-            </ul>
-          </article>
+          </div>
         </div>
       </section>
 
-      <section class="section section-muted">
-        <div class="container narrow">
-          <article class="content-block">
-            <h2>Education</h2>
-            <ul class="detail-list">
-              <li>
-                Bachelor of Arts in Technical Writing & User Experience —
-                University of Texas at El Paso, 2024
-              </li>
+      <section class="section" aria-labelledby="impact-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="impact-title">Impact</h2>
+          <div class="doc-body">
+            <ul class="plain-list">
+              <li>Cut documentation turnaround from about a week to about a day</li>
+              <li>Built Python tools for document comparison and change tracking</li>
+              <li>Supported publish-ready documentation used by customers and internal teams</li>
             </ul>
-          </article>
+          </div>
         </div>
       </section>
+
+      <section class="section" aria-labelledby="skills-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="skills-title">Skills</h2>
+          <div class="doc-body">
+            <dl class="skill-list">
+              <div>
+                <dt>Writing</dt>
+                <dd>Technical documentation, structured writing, revision management, user experience writing</dd>
+              </div>
+              <div>
+                <dt>Tools</dt>
+                <dd>Python, openpyxl, PyMuPDF, Excel workflow automation</dd>
+              </div>
+              <div>
+                <dt>Working style</dt>
+                <dd>Process improvement, cross-functional collaboration</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="edu-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="edu-title">Education</h2>
+          <div class="doc-body">
+            <p class="edu-degree">Bachelor of Arts in Technical Writing and User Experience</p>
+            <p class="edu-school">University of Texas at El Paso, 2024</p>
+          </div>
+        </div>
+      </section>
+      </div>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Isaiah Peebles</p>
-        <div class="footer-links">
-          <a href="Resume(2026).pdf" target="_blank">Resume</a>
-          <a href="https://github.com/IsaiahPeebles" target="_blank">GitHub</a>
-          <a href="contact.html">Contact</a>
-        </div>
+        <p>Isaiah Peebles, technical writer</p>
+        <ul class="footer-links">
+          <li><a href="mailto:isaiahpeebles001@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/isaiahpeebles/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/IsaiahPeebles" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+        </ul>
+        <p class="colophon" data-colophon></p>
       </div>
     </footer>
   </body>

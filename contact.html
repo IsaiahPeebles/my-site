@@ -1,86 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Isaiah Peebles by email or LinkedIn for questions, opportunities, or professional outreach.">
-  <title>Contact | Isaiah Peebles</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <script defer src="js/main.js"></script>
-</head>
-<body data-page="contact">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Isaiah Peebles home">
-        <span class="brand-mark">IP</span>
-        <span class="brand-text">Isaiah Peebles</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <script>
+      document.documentElement.classList.add("js");
+      if (document.prerendering) {
+        document.documentElement.classList.add("prerendering");
+        document.addEventListener(
+          "prerenderingchange",
+          () => document.documentElement.classList.remove("prerendering"),
+          { once: true }
+        );
+      }
+    </script>
+    <meta
+      name="description"
+      content="Contact Isaiah Peebles by email or LinkedIn about technical writing roles and documentation work."
+    />
+    <title>Contact | Isaiah Peebles</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Ctext x='16' y='20' font-family='Georgia,serif' font-size='14' font-weight='700' fill='%23fff' text-anchor='middle'%3EIP%3C/text%3E%3Cpath d='M9 24h14' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&family=Schibsted+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css?v=5" />
+    <script defer src="js/main.js?v=5"></script>
+    <link rel="expect" href="#main" blocking="render" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/*.pdf" } }
+              ]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <main id="main">
-    <section class="page-hero">
-      <div class="container narrow">
-        <p class="eyebrow">Contact</p>
-        <h1>Make the next step simple.</h1>
-        <p class="lead">
-          Contact me by email or send me a message on LinkedIn. Both are the easiest ways to reach me directly.
-        </p>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">Isaiah Peebles</a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html" aria-current="page">Contact<span class="nav-marker" aria-hidden="true"></span></a>
+          <a class="nav-resume" href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        </nav>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          Menu
+        </button>
       </div>
-    </section>
+    </header>
 
-    <section class="section">
-      <div class="container contact-grid">
-        <article class="contact-card">
-          <h2>Direct Contact</h2>
-          <ul class="contact-list">
-            <li>
-              <span>Email</span>
-              <a href="mailto:Isaiahpeebles001@gmail.com">Isaiahpeebles001@gmail.com</a>
-            </li>
-            <li>
-              <span>GitHub</span>
-              <a href="https://github.com/IsaiahPeebles" target="_blank" rel="noopener">github.com/IsaiahPeebles</a>
-            </li>
-            <li>
-              <span>LinkedIn</span>
-              <a href="https://www.linkedin.com/in/isaiahpeebles/" target="_blank" rel="noopener">linkedin.com/in/isaiahpeebles</a>
-            </li>
-          </ul>
-          <div class="hero-actions">
-            <a class="button button-primary" href="Resume(2026).pdf" target="_blank" rel="noopener">Resume</a>
-            <a class="button button-secondary" href="projects.html">Review Projects</a>
+    <main id="main">
+      <section class="page-intro">
+        <div class="container doc-row">
+          <div class="doc-body doc-body--offset">
+            <h1>Contact</h1>
+            <p class="lead">Email is the fastest way to reach me.</p>
+            <p class="email-line">
+              <a href="mailto:isaiahpeebles001@gmail.com">isaiahpeebles001@gmail.com</a>
+            </p>
+            <div class="actions">
+              <button class="button button-secondary copy-email" type="button" data-copy="isaiahpeebles001@gmail.com">Copy email address</button>
+              <p class="copy-status" role="status"></p>
+            </div>
           </div>
-        </article>
+        </div>
+      </section>
 
-      </div>
-    </section>
-  </main>
+      <div class="pane-content">
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>Isaiah Peebles</p>
-      <div class="footer-links">
-        <a href="Resume(2026).pdf" target="_blank" rel="noopener">Resume</a>
-        <a href="https://github.com/IsaiahPeebles" target="_blank" rel="noopener">GitHub</a>
-        <a href="contact.html">Contact</a>
+      <section class="section" aria-labelledby="elsewhere-title">
+        <div class="container doc-row">
+          <h2 class="side-head" id="elsewhere-title">Elsewhere</h2>
+          <div class="doc-body">
+            <dl class="skill-list">
+              <div>
+                <dt>LinkedIn</dt>
+                <dd><a href="https://www.linkedin.com/in/isaiahpeebles/" target="_blank" rel="noopener">linkedin.com/in/isaiahpeebles</a></dd>
+              </div>
+              <div>
+                <dt>GitHub</dt>
+                <dd><a href="https://github.com/IsaiahPeebles" target="_blank" rel="noopener">github.com/IsaiahPeebles</a></dd>
+              </div>
+              <div>
+                <dt>Resume</dt>
+                <dd><a href="assets/resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
       </div>
-    </div>
-  </footer>
-</body>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Isaiah Peebles, technical writer</p>
+        <ul class="footer-links">
+          <li><a href="mailto:isaiahpeebles001@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/isaiahpeebles/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/IsaiahPeebles" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+        </ul>
+        <p class="colophon" data-colophon></p>
+      </div>
+    </footer>
+  </body>
 </html>
