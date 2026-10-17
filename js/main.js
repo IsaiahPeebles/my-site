@@ -98,65 +98,126 @@ if (colophon && mainContent) {
   colophon.textContent = `Built with plain HTML, CSS, and JavaScript. No frameworks. This page: ${words.toLocaleString()} words, ${minutes}-minute read.`;
 }
 
-// Hero grid: the vanishing point follows the pointer
-const heroGrid = document.querySelector(".hero-grid");
-const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+// Hero field: a rolling landscape of dots that swells under the pointer
+const field = document.querySelector(".hero-field");
 
-if (heroGrid && finePointer && !reduceMotion) {
-  const hero = heroGrid.closest(".hero");
-  const path = heroGrid.querySelector("path");
-  const W = 1600;
-  const H = 900;
-  const depths = [60, 150, 230, 300, 360, 410];
-  const edgeYs = [-300, 0, 150, 300, 600, 750, 900, 1200];
-  const edgeXs = [200, 500, 1100, 1400];
-  const current = { x: W / 2, y: H / 2 };
-  const target = { x: W / 2, y: H / 2 };
+if (field && field.getContext) {
+  const hero = field.closest(".hero");
+  const ctx = field.getContext("2d");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const animate = !reduceMotion;
+
+  const near = 2;
+  const far = 34;
+  const colStep = 1.6; // width between front-to-back lines
+  let w = 0;
+  let h = 0;
+  let horizon = 0;
+  let focal = 0;
+  let camHeight = 0;
+
+  const cam = { x: 0, target: 0 };
+  const swell = { x: 0, z: 10, tx: 0, tz: 10, strength: 0, target: 0 };
+  let visible = true;
   let frame = 0;
+  let start = performance.now();
 
-  function draw() {
-    const { x, y } = current;
-    let d = "";
-    // Wall lines keep their depth as the vanishing point moves
-    depths.forEach((depth) => {
-      const left = (x * depth) / (W / 2);
-      const right = W - ((W - x) * depth) / (W / 2);
-      d += `M${left.toFixed(1)} 0V${H}M${right.toFixed(1)} 0V${H}`;
-    });
-    d += `M0 ${y.toFixed(1)}H${W}`;
-    const vp = `M${x.toFixed(1)} ${y.toFixed(1)}`;
-    edgeYs.forEach((ey) => {
-      d += `${vp}L0 ${ey}${vp}L${W} ${ey}`;
-    });
-    edgeXs.forEach((ex) => {
-      d += `${vp}L${ex} 0${vp}L${ex} ${H}`;
-    });
-    path.setAttribute("d", d);
-    heroGrid.style.setProperty("--vx", `${(x / W) * 100}%`);
-    heroGrid.style.setProperty("--vy", `${(y / H) * 100}%`);
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = hero.clientWidth;
+    h = hero.clientHeight;
+    field.width = Math.round(w * dpr);
+    field.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    horizon = h * 0.68;
+    focal = h * 0.9;
+    // The nearest row lands on the bottom edge
+    camHeight = ((h - horizon) * near) / focal;
+    if (!frame) draw(performance.now());
   }
 
-  function tick() {
-    current.x += (target.x - current.x) * 0.08;
-    current.y += (target.y - current.y) * 0.08;
-    draw();
-    const settled = Math.abs(target.x - current.x) < 0.5 && Math.abs(target.y - current.y) < 0.5;
-    frame = settled ? 0 : requestAnimationFrame(tick);
+  function height(x, z, t) {
+    let y =
+      0.16 * Math.sin(x * 0.32 + t * 0.5) * Math.cos(z * 0.22 - t * 0.35) +
+      0.09 * Math.sin(x * 0.75 - z * 0.4 + t * 0.8) +
+      0.05 * Math.sin(z * 0.9 + t * 0.6);
+    y *= Math.min(1, z / 6) + 0.3; // calmer up close, hillier far away
+    if (swell.strength > 0.001) {
+      const dx = x - swell.x;
+      const dz = z - swell.z;
+      y += 0.22 * swell.strength * Math.exp(-(dx * dx + dz * dz) / 5);
+    }
+    return y * camHeight * 2.2;
   }
 
-  function aim(x, y) {
-    target.x = x;
-    target.y = y;
-    if (!frame) frame = requestAnimationFrame(tick);
+  function dot(x, z, t, boost = 1) {
+    const y = height(x, z, t);
+    const sx = w / 2 + ((x - cam.x) * focal) / z;
+    if (sx < -2 || sx > w + 2) return;
+    const sy = horizon + ((camHeight - y) * focal) / z;
+    const depth = 1 - (z - near) / (far - near);
+    const crest = Math.max(0, y / (camHeight * 0.6));
+    ctx.globalAlpha = Math.min(1, depth ** 2.6 * (0.5 + crest) * boost);
+    const size = z < 6 ? 1.6 : 1.2;
+    ctx.fillRect(sx, sy, size, size);
   }
 
-  hero.addEventListener("pointermove", (event) => {
-    const box = hero.getBoundingClientRect();
-    const px = (event.clientX - box.left) / box.width - 0.5;
-    const py = (event.clientY - box.top) / box.height - 0.5;
-    // Move part of the way toward the pointer so the effect stays subtle
-    aim(W / 2 + px * W * 0.35, H / 2 + py * H * 0.35);
-  });
+  function draw(now) {
+    const t = animate ? (now - start) / 1000 : 0;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "#fff";
 
-  hero.addEventListener("pointerleave", () => aim(W / 2, H / 2));
+    // Rows: closer together in depth up front so they look evenly spaced
+    for (let z = near; z <= far; z += 0.1 + z * 0.035) {
+      const half = ((w / 2) * z) / focal + 1;
+      const step = (4 * z) / focal;
+      for (let x = cam.x - half; x <= cam.x + half; x += step) dot(x, z, t);
+    }
+
+    // Columns running into the distance
+    const reach = ((w / 2) * far) / focal;
+    const first = Math.ceil((cam.x - reach) / colStep) * colStep + colStep / 2;
+    for (let x = first; x <= cam.x + reach; x += colStep) {
+      for (let z = near; z <= far; z += 0.03 + z * 0.006) dot(x, z, t, 1.4);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function loop(now) {
+    cam.x += (cam.target - cam.x) * 0.05;
+    swell.x += (swell.tx - swell.x) * 0.08;
+    swell.z += (swell.tz - swell.z) * 0.08;
+    swell.strength += (swell.target - swell.strength) * 0.05;
+    draw(now);
+    frame = visible ? requestAnimationFrame(loop) : 0;
+  }
+
+  resize();
+  new ResizeObserver(resize).observe(hero);
+
+  if (animate) {
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !frame) frame = requestAnimationFrame(loop);
+    }).observe(hero);
+
+    if (finePointer) {
+      hero.addEventListener("pointermove", (event) => {
+        const box = hero.getBoundingClientRect();
+        const sx = event.clientX - box.left;
+        const sy = event.clientY - box.top;
+        cam.target = ((sx / w) - 0.5) * 3;
+        // Find the spot on the ground under the pointer
+        const below = Math.max(sy - horizon, 8);
+        swell.tz = Math.min(far * 0.6, Math.max(5, (camHeight * focal) / below));
+        swell.tx = cam.x + ((sx - w / 2) * swell.tz) / focal;
+        swell.target = sy > horizon - 40 ? 1 : 0.4;
+      });
+
+      hero.addEventListener("pointerleave", () => {
+        cam.target = 0;
+        swell.target = 0;
+      });
+    }
+  }
 }

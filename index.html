@@ -30,8 +30,8 @@
       href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&family=Schibsted+Grotesk:wght@400..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css?v=5" />
-    <script defer src="js/main.js?v=5"></script>
+    <link rel="stylesheet" href="css/styles.css?v=14" />
+    <script defer src="js/main.js?v=14"></script>
     <link rel="expect" href="#main" blocking="render" />
     <script type="speculationrules">
       {
@@ -74,9 +74,7 @@
 
     <main id="main">
       <section class="hero">
-        <svg class="hero-grid" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path d="M60 0V900M1540 0V900M150 0V900M1450 0V900M230 0V900M1370 0V900M300 0V900M1300 0V900M360 0V900M1240 0V900M410 0V900M1190 0V900M0 450H1600M800 450L0 -300M800 450L1600 -300M800 450L0 0M800 450L1600 0M800 450L0 150M800 450L1600 150M800 450L0 300M800 450L1600 300M800 450L0 600M800 450L1600 600M800 450L0 750M800 450L1600 750M800 450L0 900M800 450L1600 900M800 450L0 1200M800 450L1600 1200M800 450L200 0M800 450L200 900M800 450L500 0M800 450L500 900M800 450L1100 0M800 450L1100 900M800 450L1400 0M800 450L1400 900" />
-        </svg>
+        <canvas class="hero-field" aria-hidden="true"></canvas>
         <div class="container hero-layout">
           <div class="hero-copy">
           <p class="hero-role">Technical writer</p>
@@ -123,14 +121,14 @@
               </g>
               <path class="art-check" pathLength="1" d="M140 256 l12 12 l24 -26" />
               <g class="art-gear art-gear--big">
-                <circle class="gear-teeth" cx="300" cy="78" r="30" pathLength="24" />
-                <circle class="gear-hub" cx="300" cy="78" r="19" />
-                <circle class="gear-hub" cx="300" cy="78" r="6" />
+                <path class="gear-body" d="M324.61 73.62L333.81 74.38L333.81 81.62L324.61 82.38A25 25 0 0 1 322.49 88.93L322.49 88.93L329.48 94.94L325.22 100.80L317.34 96.01A25 25 0 0 1 311.77 100.06L311.77 100.06L313.89 109.03L307.00 111.27L303.44 102.76A25 25 0 0 1 296.56 102.76L296.56 102.76L293.00 111.27L286.11 109.03L288.23 100.06A25 25 0 0 1 282.66 96.01L282.66 96.01L274.78 100.80L270.52 94.94L277.51 88.93A25 25 0 0 1 275.39 82.38L275.39 82.38L266.19 81.62L266.19 74.38L275.39 73.62A25 25 0 0 1 277.51 67.07L277.51 67.07L270.52 61.06L274.78 55.20L282.66 59.99A25 25 0 0 1 288.23 55.94L288.23 55.94L286.11 46.97L293.00 44.73L296.56 53.24A25 25 0 0 1 303.44 53.24L303.44 53.24L307.00 44.73L313.89 46.97L311.77 55.94A25 25 0 0 1 317.34 59.99L317.34 59.99L325.22 55.20L329.48 61.06L322.49 67.07A25 25 0 0 1 324.61 73.62Z" />
+                <circle class="gear-ring" cx="300" cy="78" r="14" />
+                <circle class="gear-hole" cx="300" cy="78" r="5.5" />
               </g>
               <g class="art-gear art-gear--small">
-                <circle class="gear-teeth" cx="342" cy="128" r="17" pathLength="16" />
-                <circle class="gear-hub" cx="342" cy="128" r="10" />
-                <circle class="gear-hub" cx="342" cy="128" r="3.5" />
+                <path class="gear-body" d="M354.69 125.16L361.82 125.34L361.82 130.66L354.69 130.84A13 13 0 0 1 352.98 134.97L352.98 134.97L357.90 140.13L354.13 143.90L348.97 138.98A13 13 0 0 1 344.84 140.69L344.84 140.69L344.66 147.82L339.34 147.82L339.16 140.69A13 13 0 0 1 335.03 138.98L335.03 138.98L329.87 143.90L326.10 140.13L331.02 134.97A13 13 0 0 1 329.31 130.84L329.31 130.84L322.18 130.66L322.18 125.34L329.31 125.16A13 13 0 0 1 331.02 121.03L331.02 121.03L326.10 115.87L329.87 112.10L335.03 117.02A13 13 0 0 1 339.16 115.31L339.16 115.31L339.34 108.18L344.66 108.18L344.84 115.31A13 13 0 0 1 348.97 117.02L348.97 117.02L354.13 112.10L357.90 115.87L352.98 121.03A13 13 0 0 1 354.69 125.16Z" />
+                <circle class="gear-ring gear-ring--small" cx="342" cy="128" r="7.5" />
+                <circle class="gear-hole" cx="342" cy="128" r="3" />
               </g>
               <g class="art-arm" transform="translate(76 72) scale(0.82)">
                 <rect class="arm-shape" x="296" y="350" width="88" height="24" rx="5" />
@@ -155,7 +153,6 @@
             </svg>
           </figure>
         </div>
-        <a class="scroll-cue" href="#before-after">Scroll<span class="scroll-cue-line" aria-hidden="true"></span></a>
       </section>
 
       <div class="pane-content">
@@ -178,17 +175,17 @@
               <tbody>
                 <tr>
                   <th scope="row">Documentation turnaround</th>
-                  <td data-label="Before"><del>About a week</del></td>
+                  <td data-label="Before">About a week</td>
                   <td data-label="After"><ins>About a day</ins></td>
                 </tr>
                 <tr>
                   <th scope="row">Reviewing Excel revisions</th>
-                  <td data-label="Before"><del>Manual, sheet-by-sheet comparison</del></td>
+                  <td data-label="Before">Manual, sheet-by-sheet comparison</td>
                   <td data-label="After"><ins>Automatic PDF change log built in Python</ins></td>
                 </tr>
                 <tr>
                   <th scope="row">Document updates</th>
-                  <td data-label="Before"><del>Inconsistent from file to file</del></td>
+                  <td data-label="Before">Inconsistent from file to file</td>
                   <td data-label="After"><ins>Standardized, repeatable output</ins></td>
                 </tr>
               </tbody>

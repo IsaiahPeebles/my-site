@@ -100,10 +100,6 @@ button {
 }
 
 /* ---------- Header ---------- */
-.site-header {
-  border-bottom: 1px solid var(--rule);
-}
-
 .header-inner {
   position: relative;
   display: flex;
@@ -221,7 +217,7 @@ button {
 }
 
 .button-secondary {
-  background: transparent;
+  background: var(--bg);
   color: var(--text);
 }
 
@@ -238,45 +234,13 @@ button {
   flex-direction: column;
   justify-content: center;
   /* Fill the first screen below the header; the rest waits for a scroll */
-  min-height: calc(100svh - 4.5rem - 1px);
+  min-height: calc(100svh - 4.5rem);
   padding-block: clamp(2.5rem, 7vh, 6rem) clamp(5.5rem, 12vh, 7rem);
-}
-
-.scroll-cue {
-  position: absolute;
-  bottom: clamp(1.25rem, 3vh, 2rem);
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  transform: translateX(-50%);
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.scroll-cue:hover {
-  color: var(--text);
-}
-
-.scroll-cue-line {
-  width: 1px;
-  height: 2.5rem;
-  background: linear-gradient(var(--text), transparent);
-  transform-origin: top;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
-  }
-
-  .scroll-cue-line {
-    animation: cue 2s ease-in-out infinite;
   }
 
   /* Sections rise in as they scroll into view */
@@ -289,33 +253,18 @@ button {
   }
 }
 
-@keyframes cue {
-  0% { transform: scaleY(0); opacity: 1; }
-  60% { transform: scaleY(1); opacity: 1; }
-  100% { transform: scaleY(1); opacity: 0; }
-}
-
 @keyframes rise {
   from { opacity: 0; transform: translateY(2.5rem); }
   to { opacity: 1; transform: none; }
 }
 
-/* Perspective grid behind the hero, fading out toward the center */
-.hero-grid {
+/* Particle terrain behind the hero (drawn by main.js) */
+.hero-field {
   position: absolute;
   inset: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
-  fill: none;
-  stroke: var(--text);
-  stroke-opacity: 0.16;
-  -webkit-mask-image: radial-gradient(ellipse at var(--vx, 50%) var(--vy, 50%), transparent 15%, #000 75%);
-  mask-image: radial-gradient(ellipse at var(--vx, 50%) var(--vy, 50%), transparent 15%, #000 75%);
-}
-
-.hero-grid path {
-  vector-effect: non-scaling-stroke;
 }
 
 .hero-role {
@@ -445,17 +394,23 @@ button {
   stroke-linejoin: round;
 }
 
-.gear-teeth {
-  fill: none;
-  stroke: var(--text);
-  stroke-width: 9;
-  stroke-dasharray: 1 1;
+/* Solid gears with a ring and center hole */
+.gear-body {
+  fill: var(--text);
 }
 
-.gear-hub {
+.gear-hole {
   fill: var(--bg);
-  stroke: var(--text);
-  stroke-width: 3;
+}
+
+.gear-ring {
+  fill: none;
+  stroke: var(--bg);
+  stroke-width: 4;
+}
+
+.gear-ring--small {
+  stroke-width: 2.5;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -769,6 +724,10 @@ del {
 ins {
   font-weight: 600;
   text-decoration: none;
+}
+
+.changelog td[data-label="Before"] {
+  color: var(--muted);
 }
 
 /* ---------- Selected work ---------- */
