@@ -1,7 +1,0 @@
-{
-  "enabledPlugins": {
-    "frontend-design@anthropic-plugin-directory": true,
-    "playwright@claude-plugins-official": true,
-    "modern-web-guidance@claude-plugins-official": true
-  }
-}
