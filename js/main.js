@@ -88,6 +88,327 @@ if (demos.length && !reduceMotion && "IntersectionObserver" in window) {
   });
 }
 
+// Nav icons: line icons that animate on hover
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+const doodles = {
+  "about.html": {
+    art: `
+      <g class="eye-pair">
+        <rect class="is-paper" x="5" y="10" width="10" height="17" rx="5" />
+        <rect class="is-paper" x="17" y="10" width="10" height="17" rx="5" />
+        <g class="pupils">
+          <circle class="is-solid" cx="10" cy="18.5" r="2.5" />
+          <circle class="is-solid" cx="22" cy="18.5" r="2.5" />
+        </g>
+      </g>
+      <g class="brows">
+        <path d="M5.5 5.5L13 4.5" />
+        <path d="M19 4.5l7.5 1" />
+      </g>`,
+    setup(svg) {
+      const pupils = svg.querySelector(".pupils");
+      if (!finePointer) return;
+      // The eyes keep watching the pointer, anywhere on the page
+      document.addEventListener("pointermove", (event) => {
+        const box = svg.getBoundingClientRect();
+        const dx = event.clientX - (box.left + box.width / 2);
+        const dy = event.clientY - (box.top + box.height / 2);
+        const reach = Math.min(1, Math.hypot(dx, dy) / 120);
+        const angle = Math.atan2(dy, dx);
+        pupils.style.transform =
+          `translate(${(Math.cos(angle) * 1.6 * reach).toFixed(2)}px, ${(Math.sin(angle) * 4.5 * reach).toFixed(2)}px)`;
+      }, { passive: true });
+    },
+    play(svg) {
+      const eyes = svg.querySelector(".eye-pair");
+      eyes.style.transformOrigin = "16px 18.5px";
+      eyes.animate(
+        [{ transform: "scaleY(1)" }, { transform: "scaleY(0.08)" }, { transform: "scaleY(1)" }],
+        { duration: 220, easing: "ease-in-out" }
+      );
+      if (!finePointer) {
+        // No hover to hold the brows up, so raise them for the glance
+        svg.querySelector(".brows").animate(
+          [
+            { transform: "translateY(0)" },
+            { transform: "translateY(-2.5px)", offset: 0.2 },
+            { transform: "translateY(-2.5px)", offset: 0.8 },
+            { transform: "translateY(0)" },
+          ],
+          { duration: 1300, delay: 150, easing: "ease-in-out" }
+        );
+        svg.querySelector(".pupils").animate(
+          [
+            { transform: "translate(0, 0)" },
+            { transform: "translate(-1.6px, 0)", offset: 0.3 },
+            { transform: "translate(1.6px, -1px)", offset: 0.7 },
+            { transform: "translate(0, 0)" },
+          ],
+          { duration: 1100, delay: 250, easing: "ease-in-out" }
+        );
+      }
+      return 1500;
+    },
+  },
+
+  "projects.html": {
+    art: `
+      <g class="hammer" style="transform-origin: 16px 28px">
+        <rect class="is-paper" x="14.5" y="13" width="3" height="15" rx="1.5" />
+        <rect class="is-paper" x="8" y="6" width="16" height="7" rx="1.5" />
+      </g>
+      <g class="sparks is-hidden">
+        <path d="M27.5 5.5l2.5-2.5" />
+        <path d="M28.5 10h3.5" />
+        <path d="M27.5 14.5l2.5 2.5" />
+      </g>`,
+    play(svg, link) {
+      const swing = 560;
+      const impact = swing * 0.6;
+      svg.querySelector(".hammer").animate(
+        [
+          { transform: "rotate(0deg)" },
+          { transform: "rotate(-40deg)", offset: 0.45, easing: "ease-in" },
+          { transform: "rotate(24deg)", offset: 0.6, easing: "ease-out" },
+          { transform: "rotate(16deg)", offset: 0.7, easing: "ease-in-out" },
+          { transform: "rotate(0deg)" },
+        ],
+        { duration: swing }
+      );
+      setTimeout(() => {
+        svg.querySelector(".sparks").animate(
+          [{ opacity: 1, transform: "translate(0, 0)" }, { opacity: 0, transform: "translate(2px, 0)" }],
+          { duration: 260, easing: "ease-out" }
+        );
+        // The hit knocks the letters loose, hardest at the front
+        link.querySelectorAll(".doodle-label > span").forEach((letter, i) => {
+          const force = Math.max(0.25, 1 - i * 0.12);
+          const jolt = (min, max) => (min + Math.random() * (max - min)) * force;
+          letter.animate(
+            [
+              { transform: `translate(${jolt(1, 3)}px, ${-jolt(1.5, 4)}px) rotate(${jolt(-12, 12)}deg)` },
+              { transform: "none" },
+            ],
+            { duration: 380, delay: i * 18, easing: "cubic-bezier(0.3, 1.6, 0.5, 1)" }
+          );
+        });
+      }, impact);
+      return 900;
+    },
+  },
+
+  "contact.html": {
+    art: `
+      <path class="heart is-solid is-hidden" d="M16 20l-4.6-4.6a2.9 2.9 0 0 1 4.1-4.1l.5.5.5-.5a2.9 2.9 0 0 1 4.1 4.1z" />
+      <rect class="is-paper" x="4" y="8" width="24" height="17" rx="2.5" />
+      <path class="flap" style="transform-origin: 16px 9px" d="M4.5 9.5L16 17.5l11.5-8" />`,
+    play(svg) {
+      svg.querySelector(".flap").animate(
+        [
+          { transform: "scaleY(1)" },
+          { transform: "scaleY(-0.9)", offset: 0.22, easing: "ease-out" },
+          { transform: "scaleY(-0.9)", offset: 0.75 },
+          { transform: "scaleY(1)" },
+        ],
+        { duration: 1250, easing: "ease-in-out" }
+      );
+      svg.querySelector(".heart").animate(
+        [
+          { opacity: 0, transform: "translate(0, 0) scale(0.6)" },
+          { opacity: 1, transform: "translate(0, -13px) scale(1.25)", offset: 0.5, easing: "ease-out" },
+          { opacity: 0, transform: "translate(1px, -19px) scale(1.1)" },
+        ],
+        { duration: 900, delay: 220, easing: "ease-in", fill: "none" }
+      );
+      svg.querySelector(".heart").style.transformOrigin = "16px 15px";
+      return 1500;
+    },
+  },
+
+  "assets/resume.pdf": {
+    art: `
+      <g class="arrow">
+        <path class="arrow-shaft doodle-draw" pathLength="1" d="M16 4v16" />
+        <path class="arrow-head doodle-draw" pathLength="1" d="M9.5 13.5L16 20l6.5-6.5" />
+      </g>
+      <path d="M5 22v3a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-3" />`,
+    play(svg) {
+      const draw = (el, delay, duration) =>
+        el.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
+          duration, delay, easing: "ease-in-out", fill: "backwards",
+        });
+      draw(svg.querySelector(".arrow-shaft"), 0, 320);
+      draw(svg.querySelector(".arrow-head"), 260, 220);
+      svg.querySelector(".arrow").animate(
+        [{ transform: "translateY(0)" }, { transform: "translateY(2.5px)" }, { transform: "translateY(0)" }],
+        { duration: 360, delay: 520, easing: "ease-in-out" }
+      );
+      return 1400;
+    },
+  },
+};
+
+const doodleLinks = [...document.querySelectorAll(".site-nav a")].filter(
+  (link) => doodles[link.getAttribute("href")]
+);
+
+if (doodleLinks.length) {
+  const svgNS = "http://www.w3.org/2000/svg";
+
+  doodleLinks.forEach((link) => {
+    const doodle = doodles[link.getAttribute("href")];
+
+    // Split the label into letters so animations can knock them around
+    const text = [...link.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+    if (text) {
+      const label = document.createElement("span");
+      label.className = "doodle-label";
+      for (const ch of text.textContent.trim()) {
+        if (ch === " ") {
+          label.append(ch);
+          continue;
+        }
+        const letter = document.createElement("span");
+        letter.textContent = ch;
+        label.append(letter);
+      }
+      text.replaceWith(label);
+    }
+
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("class", "doodle");
+    svg.setAttribute("viewBox", "0 0 32 32");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    svg.innerHTML = doodle.art;
+    link.classList.add("has-doodle");
+    link.prepend(svg);
+
+    if (reduceMotion) return;
+    doodle.setup?.(svg);
+
+    let hovering = false;
+    let timer = 0;
+
+    function cycle() {
+      const wait = doodle.play(svg, link);
+      timer = setTimeout(() => (hovering ? cycle() : stop()), wait);
+    }
+
+    function stop() {
+      timer = 0;
+    }
+
+    function start() {
+      hovering = true;
+      if (!timer) cycle();
+    }
+
+    link.addEventListener("pointerenter", start);
+    link.addEventListener("focus", start);
+    link.addEventListener("pointerleave", () => (hovering = false));
+    link.addEventListener("blur", () => (hovering = false));
+    // Touch has no hover, so play once when the menu opens
+    link.addEventListener("doodle:once", () => {
+      if (timer) return;
+      hovering = false;
+      cycle();
+    });
+  });
+
+  if (navToggle && !reduceMotion) {
+    navToggle.addEventListener("click", () => {
+      if (!siteNav.classList.contains("is-open")) return;
+      doodleLinks.forEach((link, i) =>
+        setTimeout(() => link.dispatchEvent(new Event("doodle:once")), 120 + i * 140)
+      );
+    });
+  }
+}
+
+// Brand: the name decodes itself, letter by letter
+const brand = document.querySelector(".brand");
+
+if (brand && !reduceMotion) {
+  const glyphs = "01<>/{}[]#*_=+";
+  const name = brand.textContent.trim();
+  brand.setAttribute("aria-label", name);
+  brand.textContent = "";
+
+  const letters = [...name].map((ch) => {
+    if (ch === " ") {
+      brand.append(ch);
+      return null;
+    }
+    const span = document.createElement("span");
+    span.className = "brand-letter";
+    span.textContent = ch;
+    span.setAttribute("aria-hidden", "true");
+    brand.append(span);
+    return { span, ch };
+  }).filter(Boolean);
+
+  // Lock each slot to its real letter's width so the centered name holds still
+  function lockWidths() {
+    if (running) return;
+    letters.forEach(({ span }) => (span.style.width = ""));
+    letters.forEach(({ span }) => (span.style.width = `${span.getBoundingClientRect().width}px`));
+  }
+  document.fonts.ready.then(lockWidths);
+  window.addEventListener("resize", lockWidths, { passive: true });
+
+  let running = 0;
+
+  function decode() {
+    if (running) return;
+    const start = performance.now();
+    let lastSwap = 0;
+
+    running = requestAnimationFrame(function step(now) {
+      const elapsed = now - start;
+      const swap = now - lastSwap > 50;
+      if (swap) lastSwap = now;
+      let done = true;
+
+      letters.forEach(({ span, ch }, i) => {
+        const settled = elapsed > 180 + i * 45;
+        if (settled) {
+          if (span.textContent !== ch) {
+            span.textContent = ch;
+            span.classList.remove("is-scrambled");
+          }
+          return;
+        }
+        done = false;
+        if (swap) {
+          span.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+          span.classList.add("is-scrambled");
+        }
+      });
+
+      running = done ? 0 : requestAnimationFrame(step);
+    });
+  }
+
+  brand.addEventListener("pointerenter", decode);
+  brand.addEventListener("focus", decode);
+
+  // Play once on the first page of a visit
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem("brand-decoded") === "1";
+    sessionStorage.setItem("brand-decoded", "1");
+  } catch {}
+  if (!seen) {
+    if (document.prerendering) {
+      document.addEventListener("prerenderingchange", () => setTimeout(decode, 200), { once: true });
+    } else {
+      document.fonts.ready.then(() => setTimeout(decode, 200));
+    }
+  }
+}
+
 // Colophon: word count and reading time for this page
 const colophon = document.querySelector("[data-colophon]");
 const mainContent = document.querySelector("main");

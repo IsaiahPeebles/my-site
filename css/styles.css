@@ -118,6 +118,19 @@ button {
   font-weight: 600;
   letter-spacing: -0.01em;
   text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Letters split by main.js for the decode effect */
+.brand-letter {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.brand-letter.is-scrambled {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-weight: 500;
 }
 
 .site-nav {
@@ -179,6 +192,79 @@ button {
   font-family: var(--sans);
   font-size: 0.9375rem;
   cursor: pointer;
+}
+
+/* ---------- Nav doodles ---------- */
+/* Line icons added by main.js; they animate on hover */
+.site-nav .has-doodle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.doodle {
+  flex: none;
+  width: 1.45em;
+  height: 1.45em;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.doodle * {
+  transform-box: view-box;
+}
+
+.doodle .is-solid {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Covers whatever is tucked behind it, like the envelope's heart */
+.doodle .is-paper {
+  fill: var(--bg);
+}
+
+.site-nav .nav-resume:hover .is-paper {
+  fill: var(--text);
+}
+
+.doodle .is-hidden {
+  opacity: 0;
+}
+
+/* About's eyebrows go up and stay up while the link is hovered */
+@media (prefers-reduced-motion: no-preference) {
+  .doodle .brows {
+    transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1);
+  }
+
+  .has-doodle:hover .brows,
+  .has-doodle:focus-visible .brows {
+    transform: translateY(-2.5px);
+  }
+}
+
+.doodle-draw {
+  stroke-dasharray: 1;
+}
+
+.doodle-label {
+  white-space: nowrap;
+}
+
+.doodle-label > span {
+  display: inline-block;
+}
+
+/* Brand sits between the links; drop the icons where they would crowd it */
+@media (min-width: 721px) and (max-width: 940px) {
+  .doodle {
+    display: none;
+  }
 }
 
 /* ---------- Buttons ---------- */
