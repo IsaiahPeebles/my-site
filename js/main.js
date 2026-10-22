@@ -416,7 +416,28 @@ const mainContent = document.querySelector("main");
 if (colophon && mainContent) {
   const words = mainContent.innerText.split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.round(words / 230));
-  colophon.textContent = `Built with plain HTML, CSS, and JavaScript. No frameworks. This page: ${words.toLocaleString()} words, ${minutes}-minute read.`;
+  colophon.textContent = `This page: ${words.toLocaleString()} words, ${minutes}-minute read.`;
+}
+
+// Hero art in 3D: load the WebGL scene once the page has settled. The SVG
+// stays up until the first frame, and for good if anything fails.
+const art3d = document.querySelector(".hero-art-3d");
+
+if (art3d && !reduceMotion) {
+  const load = () =>
+    import("./hero3d.js?v=20")
+      .then((mod) => mod.start(art3d))
+      .catch(() => art3d.remove());
+  const whenIdle = () =>
+    "requestIdleCallback" in window ? requestIdleCallback(load, { timeout: 2000 }) : setTimeout(load, 300);
+
+  if (document.prerendering) {
+    document.addEventListener("prerenderingchange", whenIdle, { once: true });
+  } else if (document.readyState === "complete") {
+    whenIdle();
+  } else {
+    window.addEventListener("load", whenIdle, { once: true });
+  }
 }
 
 // Hero field: a rolling landscape of dots that swells under the pointer

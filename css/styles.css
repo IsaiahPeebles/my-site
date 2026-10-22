@@ -652,6 +652,24 @@ button {
   }
 }
 
+/* WebGL version of the drawing (js/hero3d.js). Sized and placed over the
+   SVG by script; the SVG hides only once the first 3D frame is drawn. */
+.hero-art-3d {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.hero-art.is-3d .hero-art-3d {
+  opacity: 1;
+}
+
+.hero-art.is-3d svg {
+  visibility: hidden;
+}
+
 @media (max-width: 960px) {
   .hero-layout {
     grid-template-columns: minmax(0, 1fr);
